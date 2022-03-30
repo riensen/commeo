@@ -1,0 +1,23 @@
+{
+  "version": "0.1.0",
+  "domain": "commeo",
+  "name": "Commeo Integration",
+  "documentation": "https://www.home-assistant.io/integrations/commeo",
+  "requirements": [
+    "pyserial==3.5",
+    "pyserial-asyncio==0.6",
+    "xmltodict==0.12.0"
+  ],
+  "config_flow": true,
+  "usb": [
+    {
+      "vid": "0403",
+      "pid": "6015"
+    }
+  ],
+  "dependencies": ["usb"],
+  "codeowners": [
+    "@riensen"
+  ],
+  "iot_class": "local_polling"
+}
