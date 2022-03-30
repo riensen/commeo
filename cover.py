@@ -38,9 +38,10 @@ async def async_setup_entry(
     async_add_entities,
 ):
     """Setup sensors from a config entry created in the integrations UI."""
-    _LOGGER.info("entry.data: %s" % entry.data)
+    if CONF_DEVICE_PATH in hass.data[DOMAIN]:
+        hass.data[DOMAIN][CONF_DEVICE_PATH] = entry.data[CONF_DEVICE_PATH]
 
-    serialDevice = str(entry.data)
+    serialDevice = hass.data[DOMAIN][CONF_DEVICE_PATH]
     serialManager:CommeoSerialManager = CommeoSerialManager(serialDevice)
 
     def async_setup_finished(actors):

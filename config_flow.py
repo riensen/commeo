@@ -62,11 +62,10 @@ class CommeoFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
                 usb.get_serial_by_id, port.device
             )
             _LOGGER.info("Dev Path: %s" % dev_path)
-
+            
             # did not detect anything
-            return self.async_create_entry(title="Commeo Cover",data={"path": dev_path},
+            return self.async_create_entry(title="Commeo Cover",data={CONF_DEVICE_PATH: dev_path},
         )
-            return self.async_create_entry(title=CONF_DEVICE, data=dev_path)
 
         schema = vol.Schema({vol.Required(CONF_DEVICE_PATH): vol.In(list_of_ports)})
         return self.async_show_form(step_id="user", data_schema=schema)
@@ -114,7 +113,7 @@ class CommeoFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
         if user_input is not None:
             return self.async_create_entry(
                 title=self._title,
-                data=self._device_path,
+                data={CONF_DEVICE_PATH: self._device_path},
             )
 
         return self.async_show_form(
